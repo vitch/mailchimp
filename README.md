@@ -6,14 +6,14 @@ _________________
 Example
 
 
-$mailChimpInstance = new Mailchimp();
-$merge_vars = array('FNAME'=>'FIRST NAME OF THE USER', 'LNAME'=>'LAST NAME OF THE USER');
-$retval = $mailChimpInstance->listSubscribe(Kohana::config('mailchimp.list_id'), 'EMAIL ADDRESS OF THE USER', $merge_vars, 'html', false);
-if ($mailChimpInstance->errorCode)
-{
-	Kohana::log('error', "Unable to load listUpdateMember. \tCode=".$mailChimpInstance->errorCode."\n\tMsg=".$mailChimpInstance->errorMessage."\n");
-}
-else
-{
-	WHATEVER
-}
+	$mailChimpInstance = new Mailchimp();
+	$merge_vars = array('FNAME'=>'FIRST NAME OF THE USER', 'LNAME'=>'LAST NAME OF THE USER');
+	$retval = $mailChimpInstance->listSubscribe(Kohana::config('mailchimp.list_id'), 'EMAIL ADDRESS OF THE USER', $merge_vars, 'html', false);
+	if ($mailChimpInstance->errorCode)
+	{
+		Kohana::log('error', "Unable to load listUpdateMember. \tCode=".$mailChimpInstance->errorCode."\n\tMsg=".$mailChimpInstance->errorMessage."\n");
+	}
+	else
+	{
+		WHATEVER
+	}
