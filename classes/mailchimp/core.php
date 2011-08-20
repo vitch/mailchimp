@@ -1,15 +1,15 @@
 <?php defined('SYSPATH') OR die('No direct access allowed.');
 
 /**
- * Mailchimp library for Kohana 3.2. Handles subscription of users into a specific Mailchimp list.
- * Original script is from 
+ * Mailchimp library.
+ *
+ * @package    kohana-mailchimp
+ * @author     Regis Freyd (v2.x) modified by Emir Beganovic (v3.x)
  * 
- * @package    Mailchimp
- * @author     Emir Beganovic
  */
 class Mailchimp_Core {
 
-	var $version = "1.3.1";
+	var $version = "1.3";
     var $errorMessage;
     var $errorCode;
     
@@ -2489,4 +2489,4 @@ class Mailchimp_Core {
     }
 
 } 
-// // End MailChimp
+// end MailChimp
