@@ -4,6 +4,10 @@ Forked and modified from original KohanaPHP v 2.x extension https://github.com/d
 
 Based on http://www.mailchimp.com/api/downloads/
 
+#Installation
+
+Edit application/config/mailchimp.php and add your Mailchimp.com API key and list ID.
+
 #Example usage
 ### Subscribe a user
 
