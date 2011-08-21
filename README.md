@@ -1,4 +1,6 @@
-Kohana 3.2 client library for the MailChimp API v1.3. 
+Kohana 3.2 client library for the MailChimp API v1.3.1. 
+
+Forked and modified from original KohanaPHP v 2.x extension https://github.com/djaiss/kohana-mailchimp
 
 Based on http://www.mailchimp.com/api/downloads/
 
