@@ -29,26 +29,61 @@ class Mailchimp_Core {
     var $chunkSize = 8192;
     
     /**
-     * Cache the user api_key so we only have to log in once per client instantiation
+     * The MailChimp API Key
      */
     var $api_key;
 
     /**
-     * Cache the user api_key so we only have to log in once per client instantiation
+     * Whether to connect to the MailChimp API over https
      */
     var $secure = false;
-    
-    /**
-     * Connect to the MailChimp API for a given list.
-     * 
-     * @param string $apikey Your MailChimp apikey
-     * @param string $secure Whether or not this should use a secure connection
-     */
-    function MCAPI($apikey, $secure=false) {
-        $this->secure = $secure;
-        $this->apiUrl = parse_url("http://api.mailchimp.com/" . $this->version . "/?output=php");
-        $this->api_key = $apikey;
-    }
+
+	/**
+	 * @var  array  MailChimp instances
+	 */
+	public static $instances = array();
+
+	/**
+	 * Creates a singleton MailChimp instance.
+	 *
+	 *     $mailchimp = MailChimp::instance();
+	 *
+	 * @param   string   api_key (loaded from config if not passed)
+	 * @param   boolean   session identifier
+	 * @return  MailChimp
+	 * @uses    Kohana::config
+	 */
+	public static function instance($api_key = NULL, $secure = TRUE)
+	{
+		if ($api_key === NULL)
+		{
+			$api_key = Kohana::$config->load('mailchimp')->api_key;
+		}
+
+		$key = $api_key . '_' . $secure;
+
+		if ( ! isset(Mailchimp::$instances[$key]))
+		{
+			Mailchimp::$instances[$key] = new Mailchimp($api_key, $secure);
+		}
+
+		return Mailchimp::$instances[$key];
+	}
+
+	/**
+	 * Create a MailChimp instance.
+	 *
+	 * @param   string   api_key (loaded from config if not passed)
+	 * @param   boolean   session identifier
+	 * @return  void
+	 */
+	public function __construct($api_key, $secure)
+	{
+		$this->api_key = $api_key;
+		$this->secure = $secure;
+		$this->apiUrl = parse_url("http://api.mailchimp.com/" . $this->version . "/?output=php");
+	}
+
     function setTimeout($seconds){
         if (is_int($seconds)){
             $this->timeout = $seconds;
